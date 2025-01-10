@@ -8,17 +8,25 @@ The primary goal of this project is to build a custom database system that handl
 
 In addition to the core database functionality, there are plans to implement a Graphical User Interface (GUI) to interact with the database, making it more user-friendly and accessible.
 
-## Features
+## 🚀 Features Planned
 
 - **Custom Storage Engine**: A lightweight storage solution for data persistence.
 - **Query Processing**: Support for basic SQL-like queries (e.g., SELECT, INSERT).
 - **Transaction Management**: Ensuring atomicity, consistency, isolation, and durability (ACID).
 - **GUI Integration** (Future Plan): A user interface for easier interaction with the database.
 
-## Learning Objectives
+## 🎯 Learning Objectives
 
 - Understand and apply Rust's ownership model, memory safety, and concurrency.
 - Design and implement a custom storage system.
 - Learn about query parsing and execution.
 - Build and optimize a robust, production-quality database system.
 - Experiment with integrating a GUI.
+
+## 🔧 Technologies Used
+
+- **Programming Language**: Rust
+- **Concurrency**: Rust's async/await, Threads, and Channels
+- **Networking**: HTTP APIs (Using `hyper` or `warp` crates)
+- **Database**: Custom storage engine, with plans for persistence via `PostgreSQL` or `Redis`
+- **Version Control**: Git
