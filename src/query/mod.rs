@@ -1,17 +1,32 @@
-use crate::storage::Storage;
+use crate::storage::Database;
+use anyhow::Result;
 
-pub fn execute_query(query: &str, storage: &mut Storage) {
-    if query.starts_with("INSERT") {
-        let parts: Vec<&str> = query.split_whitespace().collect();
-        let key = parts[1].to_string();
-        let value = parts[2].to_string();
-        storage.insert(key, value);
-    } else if query.starts_with("SELECT") {
-        let parts: Vec<&str> = query.split_whitespace().collect();
-        let key = parts[1];
-        match storage.get(key) {
-            Some(value) => println!("Value: {}", value),
-            None => println!("No value found for key: {}", key),
+pub enum Query {
+    Insert { key: String, value: String },
+    Get { key: String },
+    Remove { key: String },
+}
+
+pub fn execute_query(db: &Database, query: Query) -> Result<()> {
+    match query {
+        Query::Insert { key, value } => {
+            db.insert(key, value)?;
+            println!("Inserted successfully.");
+        }
+        Query::Get { key } => {
+            if let Some(value) = db.get(&key)? {
+                println!("Value for {}: {}", key, value);
+            } else {
+                println!("No value found for {}", key);
+            }
+        }
+        Query::Remove { key } => {
+            if let Some(value) = db.remove(&key)? {
+                println!("Removed value for {}: {}", key, value);
+            } else {
+                println!("No value found for {}", key);
+            }
         }
     }
+    Ok(())
 }
